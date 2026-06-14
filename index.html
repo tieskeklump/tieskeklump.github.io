@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>document.documentElement.classList.add("js");</script>
 <title>Thijs Klumpenaar — IT Service Management &amp; Consultancy</title>
 <meta name="description" content="Thijs Klumpenaar — freelance IT Service Management, cloud en automatisering. Ik help organisaties hun IT laten werken zoals het hoort." />
 <meta name="author" content="Thijs Klumpenaar" />
@@ -255,8 +256,8 @@
   .foot .mono { font-size: 0.72rem; }
 
   /* Reveal animation */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
-  .reveal.in { opacity: 1; transform: none; }
+  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal.in { opacity: 1; transform: none; }
   .hero .reveal { transition-delay: var(--d, 0s); }
 
   /* Responsive */
@@ -271,7 +272,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-    .reveal { opacity: 1; transform: none; }
+    .reveal { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
