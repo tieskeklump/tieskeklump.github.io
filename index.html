@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0c0e'/><text x='16' y='24' font-family='monospace' font-size='21' font-weight='700' fill='%23ff6a3d' text-anchor='middle'>k</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --ink: #0b0c0e;
@@ -29,7 +29,7 @@
     --accent-soft: rgba(255, 106, 61, 0.14);
     --font-display: "Bricolage Grotesque", sans-serif;
     --font-body: "Hanken Grotesk", sans-serif;
-    --font-mono: "JetBrains Mono", monospace;
+    --font-mono: var(--font-body);
     --maxw: 1180px;
   }
 
@@ -54,20 +54,16 @@
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* Subtle grid + glow background */
+  /* Soft glow background */
   .bg {
     position: fixed;
     inset: 0;
     z-index: -1;
     background-color: var(--ink);
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 64px 64px;
     -webkit-mask-image: radial-gradient(120% 90% at 70% 0%, #000 0%, transparent 75%);
     mask-image: radial-gradient(120% 90% at 70% 0%, #000 0%, transparent 75%);
   }
@@ -90,7 +86,7 @@
   .mono {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -196,7 +192,7 @@
   .about-grid p:last-child { margin-bottom: 0; }
   .facts { display: flex; flex-direction: column; gap: 1.2rem; }
   .fact { border-left: 2px solid var(--accent); padding-left: 1.1rem; }
-  .fact .k { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .fact .k { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
   .fact .v { font-size: 1.15rem; font-weight: 600; margin-top: 0.15rem; }
 
   /* Services */
@@ -215,8 +211,8 @@
   }
   .card:hover { transform: translateY(-5px); border-color: var(--line-strong); }
   .card:hover::before { transform: scaleX(1); }
-  .card .ix { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
-  .card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; margin: 0.9rem 0 0.6rem; letter-spacing: -0.01em; }
+  .card .ix { display: none; }
+  .card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; margin: 0 0 0.6rem; letter-spacing: -0.01em; }
   .card p { color: var(--muted); font-size: 0.97rem; }
 
   /* Projects */
@@ -248,7 +244,7 @@
   .clinks { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.8rem; }
   .clink { display: flex; align-items: center; gap: 0.8rem; color: var(--muted); font-size: 0.95rem; transition: color 0.25s ease; }
   .clink:hover { color: var(--cream); }
-  .clink .lbl { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted-2); width: 90px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .clink .lbl { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted-2); width: 90px; letter-spacing: 0.06em; text-transform: uppercase; }
 
   /* Footer */
   footer { border-top: 1px solid var(--line); padding: 2.5rem 0; }
