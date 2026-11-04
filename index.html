@@ -130,7 +130,38 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
   }
+
+  /* Zwerm-intro (swarm.js) */
+  html.swarm-hide body > :not(#swarm) { opacity: 0; }
+  #swarm { position: fixed; inset: 0; z-index: 20; pointer-events: none; overflow: hidden; }
+  #swarm .c { position: absolute; left: 0; top: 0; margin: -1px 0 0 -1px; will-change: transform; transition: opacity 0.4s ease; }
+  #swarm .c svg { display: block; filter: drop-shadow(0 1px 2px rgba(22, 24, 29, 0.3)); transform-origin: 2px 2px; transition: transform 0.12s ease; }
+  #swarm .c.down svg { transform: scale(0.85); }
+  #swarm { --mono: ui-monospace, "Cascadia Code", Consolas, Menlo, monospace; }
+  #swarm .c span { position: absolute; left: 14px; top: 19px; padding: 3px 7px; border-radius: 4px; color: #fff; font: 500 11px/1.3 var(--mono); white-space: nowrap; }
+  #swarm .c.flip span { left: auto; right: 6px; }
+  #swarm .c span:empty { display: none; }
+  #swarm .sel { position: absolute; width: 0; height: 0; border: 1.5px solid; border-radius: 4px; transition: opacity 0.3s ease; }
+  #swarm .insp { position: absolute; border: 1px dashed; border-radius: 3px; transition: opacity 0.3s ease; }
+  #swarm .badge { position: absolute; left: -1px; bottom: calc(100% + 3px); padding: 2px 6px; border-radius: 3px; color: #fff; font: 500 10.5px/1.3 var(--mono); font-style: normal; white-space: nowrap; }
+  #swarm .badge:empty { display: none; }
+  #swarm .caret { position: absolute; width: 2px; margin-left: 1px; }
+  #swarm .log { position: absolute; right: 16px; bottom: 16px; min-width: 300px; padding: 10px 14px; background: rgba(255, 255, 255, 0.94); border: 1px solid var(--chip); border-radius: 8px; box-shadow: 0 6px 20px rgba(22, 24, 29, 0.08); color: var(--text); font: 11px/1.65 var(--mono); white-space: pre; }
+  #swarm .log b { color: var(--blue); font-weight: 600; }
+  @media (max-width: 700px) { #swarm .log { display: none; } }
+  #swarm .ripple { position: absolute; width: 28px; height: 28px; margin: -14px 0 0 -14px; border: 2px solid; border-radius: 50%; animation: swarm-ripple 0.45s ease-out forwards; }
+  @keyframes swarm-ripple { from { transform: scale(0.2); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
 </style>
+<script>
+  // Zwerm-intro alleen bij het eerste bezoek per sessie en niet bij "beweging beperken".
+  // Vangnet: na 6 s staat de inhoud hoe dan ook zichtbaar.
+  try {
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("swarm")) {
+      document.documentElement.classList.add("swarm-hide");
+      setTimeout(function () { document.documentElement.classList.remove("swarm-hide"); }, 6000);
+    }
+  } catch (e) {}
+</script>
 </head>
 <body>
 <header>
@@ -256,5 +287,6 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+<script src="swarm.js"></script>
 </body>
 </html>
